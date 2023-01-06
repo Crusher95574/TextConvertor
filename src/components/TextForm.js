@@ -4,19 +4,23 @@ export default function TextForm(props) {
   const handleUpClick=()=>{
     let newText=text.toUpperCase();
     setText(newText);
+     props.showAlert("Converted to uppercase","success");
   }
   const handleLowClick=()=>{
     let newText=text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to lowercase","success");
   }
  
   const handleClearClick=()=>{
     let newText=" ";
     setText(newText);
+    props.showAlert("Text has been cleared","success");
   }
   const handleCapitalClick=()=>{
     let newText=text.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');;
     setText(newText);
+    props.showAlert("Converted to Capital","success");
   }
   const handleOnChange=(event)=>{
     setText(event.target.value);
@@ -27,10 +31,10 @@ export default function TextForm(props) {
 
   return (
     <>
-    <div className="container">
+    <div className="container" style={{backgroundColor: props.mode==='light'?'white':'grey',color: props.mode==='light'?'black':'white'}}>
 <h1>{props.heading}</h1>
 <div className="mb-3">
-  <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+  <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='light'?'white':'grey',color: props.mode==='light'?'black':'white'}} id="myBox" rows="8 "></textarea>
 </div>
 <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Uppercase</button>
 <button className="btn btn-primary mx-2" onClick={handleLowClick}>Convert to Lowercase</button>  
@@ -38,12 +42,12 @@ export default function TextForm(props) {
 <button className="btn btn-primary mx-2" onClick={handleCapitalClick}>Capitalize</button>  
  </div>
 
-    <div className="container my-3">
+    <div className="container my-3" style={{backgroundColor: props.mode==='light'?'white':'#042743',color: props.mode==='light'?'black':'white'}}>
       <h1>Your text summary</h1>
       <p>{text.split(" ").length} words and {text.length} characters</p>
      <p>{0.008*text.split(" ").length } Minutes read</p>
      <h>Preview</h>
-     <p>{text}</p>
+     <p>{text.length>0?text:"Enter something is text box to preview it here "}</p>
     </div>
 
 </>

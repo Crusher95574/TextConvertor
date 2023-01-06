@@ -21,7 +21,7 @@ function App() {
     document.body.classList.remove('bg-warning')
     document.body.classList.remove('bg-danger')
     document.body.classList.remove('bg-sucess')
-    document.body.classList.remove('bg-primary')
+   
   
   }
   const toggleMode=(cls)=>{   
